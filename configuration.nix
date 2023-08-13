@@ -52,6 +52,10 @@
 
   # Bluetooth
    hardware.bluetooth.enable = true;
+   services.blueman.enable = true;   
+
+  # Steam Devices
+   hardware.steam-hardware.enable = true;  
  
   # Sound
    services.pipewire.audio.enable = true;
@@ -158,9 +162,11 @@
      swaybg
      seatd
      steam
+     lutris
      pipewire
      pulseaudio
      polkit
+     protonvpn-gui
      libsForQt5.polkit-kde-agent
      pavucontrol
      papirus-icon-theme
@@ -173,6 +179,7 @@
      waybar
      xwayland
      networkmanagerapplet
+     blueman
    ];
 
   # Some programs need SUID wrappers, can be configured further or are
