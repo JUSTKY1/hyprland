@@ -13,7 +13,10 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.timeout = 0;
 
+  
+  
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -45,6 +48,12 @@
   # Start USB Auto-Mount
 
    services.gvfs.enable = true;
+   
+  # KDE-Connect
+  programs.kdeconnect.enable = true;
+  
+  # QT App theme
+  qt.style = "adwaita-dark";
   
   # Polkit
    security.polkit.enable = true;  
@@ -76,7 +85,7 @@
   
   # Icons
    xdg.icons.enable = true;    
-
+   
   # Bash
    programs.bash.enableCompletion = true;
    programs.nix-index.enableBashIntegration = true;
@@ -89,7 +98,9 @@
     };
   
   # Auto-Login
+ 
     services.getty.autologinUser = "justin";
+    security.pam.services.gtklock = {};
     
    # services.xserver.displayManager.autoLogin.enable = true;  
   
@@ -148,7 +159,6 @@
      xdg-desktop-portal-gtk
      xdg-utils
      qt6.qtwayland
-     qt6.full
      xfce.thunar
      xfce.thunar-volman
      xfce.tumbler
@@ -180,6 +190,8 @@
      xwayland
      networkmanagerapplet
      blueman
+     neovim
+     libsForQt5.kdeconnect-kde
    ];
 
   # Some programs need SUID wrappers, can be configured further or are
