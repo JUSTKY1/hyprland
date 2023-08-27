@@ -8,7 +8,9 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./hyprland.nix
     ];
+    
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -41,9 +43,7 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-  # Hyperland WIndow Manager Programs
-   programs.hyprland.enable = true;
-   programs.hyprland.xwayland.enable = true;
+
  
   # Start USB Auto-Mount
 
@@ -99,7 +99,7 @@
   
   # Auto-Login
  
-    services.getty.autologinUser = "justin";
+
     security.pam.services.gtklock = {};
     
    # services.xserver.displayManager.autoLogin.enable = true;  
@@ -137,11 +137,7 @@
    users.users.justin = {
      isNormalUser = true;
      extraGroups = [ "wheel" "networkmanager" "video" "audio" "kvm" ]; # Enable ‘sudo’ for the user.
-  #   packages = with pkgs; [
-  #     firefox
-  #     tree
-  #   ];
-   };
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -152,10 +148,6 @@
      dunst
      brightnessctl
      git
-     hyprland
-     hyprland-protocols
-     hyprland-share-picker
-     xdg-desktop-portal-hyprland
      xdg-desktop-portal-gtk
      xdg-utils
      qt6.qtwayland
@@ -176,6 +168,7 @@
      pipewire
      pulseaudio
      polkit
+     polkit_gnome
      protonvpn-gui
      libsForQt5.polkit-kde-agent
      pavucontrol
