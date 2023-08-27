@@ -9,6 +9,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./hyprland.nix
+      ./autologin.nix
+      ./packages.nix
     ];
     
 
@@ -40,19 +42,12 @@
   # };
   # Enable Flakes & Nix-Command
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
 
-
- 
   # Start USB Auto-Mount
 
    services.gvfs.enable = true;
    
-  # KDE-Connect
-  programs.kdeconnect.enable = true;
-  
-  # QT App theme
+ # QT App theme
   qt.style = "adwaita-dark";
   
   # Polkit
@@ -63,8 +58,7 @@
    hardware.bluetooth.enable = true;
    services.blueman.enable = true;   
 
-  # Steam Devices
-   hardware.steam-hardware.enable = true;  
+   
  
   # Sound
    services.pipewire.audio.enable = true;
@@ -89,22 +83,10 @@
   # Bash
    programs.bash.enableCompletion = true;
    programs.nix-index.enableBashIntegration = true;
-  # Waybar
-   programs.waybar.enable = true;
-
-  # environment etc
-    environment.etc = {
-	"xdg/gtk-3.0" .source = ./gtk-3.0;
-    };
-  
-  # Auto-Login
  
 
-    security.pam.services.gtklock = {};
-    
-   # services.xserver.displayManager.autoLogin.enable = true;  
-  
-  # Allow Unfree Software
+
+    # Allow Unfree Software
     nixpkgs.config.allowUnfree = true;
 
   # D-Bus
@@ -123,8 +105,7 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
   
-  # Steam 
-    programs.steam.enable = true;  
+
 
   # Enable sound.
    sound.enable = true;
@@ -139,53 +120,7 @@
      extraGroups = [ "wheel" "networkmanager" "video" "audio" "kvm" ]; # Enable ‘sudo’ for the user.
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-   environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     wget
-     catppuccin-gtk
-     dunst
-     brightnessctl
-     git
-     xdg-desktop-portal-gtk
-     xdg-utils
-     qt6.qtwayland
-     xfce.thunar
-     xfce.thunar-volman
-     xfce.tumbler
-     xsettingsd
-     gvfs
-     alacritty
-     kitty
-     firefox
-     gtklock
-     rofi-wayland
-     swaybg
-     seatd
-     steam
-     lutris
-     pipewire
-     pulseaudio
-     polkit
-     polkit_gnome
-     protonvpn-gui
-     libsForQt5.polkit-kde-agent
-     pavucontrol
-     papirus-icon-theme
-     gnome.gedit
-     gnome.gnome-themes-extra
-     gtk-engine-murrine
-     gtk3
-     wireplumber 
-     neofetch
-     waybar
-     xwayland
-     networkmanagerapplet
-     blueman
-     neovim
-     libsForQt5.kdeconnect-kde
-   ];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -222,15 +157,7 @@
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = true;
   
-   #Overlays
-    #Waybar wlr/Workspaces
-    nixpkgs.overlays = [
-    (self: super: {
-      waybar = super.waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      });
-    })
-    ];
+   
   
 }
 
