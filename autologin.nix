@@ -11,6 +11,7 @@ services.xserver.displayManager.autoLogin.user = "justin";
 services.xserver.displayManager.defaultSession = "hyprland";
 
     security.pam.services.gtklock = {};
+    security.pam.services.swaylock = {};
 
   environment.systemPackages = with pkgs; [
   libsForQt5.sddm

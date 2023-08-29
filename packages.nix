@@ -45,7 +45,8 @@
      blueman
      neovim
      libsForQt5.kdeconnect-kde
-   ];
+     swaylock-effects
+    ];
    
     # KDE-Connect
   programs.kdeconnect.enable = true;
